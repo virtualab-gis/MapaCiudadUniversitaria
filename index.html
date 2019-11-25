@@ -69,34 +69,8 @@ var inci_style = {
 var limite = L.geoJson(null, {
 	style: limite_style })
 
-//Variable para capa de la ubicación de cada de amigos
-var amigos = L.geoJson(null, { 
-	onEachFeature: function( feature, layer ){
-		layer.bindPopup( "<strong>" + feature.properties.Name + "</strong>")}
-		});
 
-//Variable con los hexagonos tematizados de la CDMX	  
-var cdmx = L.geoJson(null, {
-    style: function(feature){
-      var fillColor,
-          denpob = feature.properties.DenPob;
-      if ( denpob >  253.2304 ) fillColor = "#a50f15";
-      else if ( denpob > 177.13 ) fillColor = "#de2d26";
-      else if ( denpob > 112.24 ) fillColor = "#fb6a4a";
-      else if ( denpob > 51.76 ) fillColor = "#fcae91";
-      else if ( denpob > 0.03 ) fillColor = "#fee5d9";
-      else fillColor = "#f7f7f7";  // no data
-      return { color: "#999", weight: 0.5, fillColor: fillColor, fillOpacity: .5 };
-    },
-	 onEachFeature: function( feature, layer ){
-      layer.bindPopup( "<strong>" + "Densidad" + "</strong><br/>" + feature.properties.DenPob + " habitantes por hectárea" )
-    }
-  }  );
-   /* onEachFeature: function( feature, layer ){
-      layer.bindPopup( "<strong>" + "Densidad" + "</strong><br/>+"feature.properties.DenPob + " habitantes por hectárea" )
-    }
-};
-*/
+
 // Variable para la red del metro tematizada	  
 var red_metro = L.geoJson(null, {
 	style: function(feature){
@@ -129,8 +103,6 @@ var incidente =L.geoJson(null, {
 	});
 	  
 //Cargar el GeoJSON a las variables	    
-$.getJSON("GeoJson/CDMX_Hex.geojson", function (data) {
-	cdmx.addData(data)});
 $.getJSON("GeoJson/Limite_CDMX.geojson", function (data) {
 	limite.addData(data)});
 $.getJSON("GeoJson/Red_STCMetro.geojson", function (data) {
@@ -158,7 +130,6 @@ var baseMaps = {
 //Agrupar Overlay layers
 var overlays = {
     "Red SCT Metro": red_metro,
-    "Densidad poblacional": cdmx,
     "Incidentes":incidente
     };
 
