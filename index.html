@@ -85,6 +85,15 @@ var col_style = {
 	fillOpacity: 0.25
 };
 
+var inci_style = {
+    radius: 3.5,
+    fillColor: "#FFFFFF",
+    color: "#000000",
+    weight: 1.5,
+    opacity: 1,
+    fillOpacity: 0.6
+};
+
 // Crear variables para los GeoJSON
 var limite = L.geoJson(null, {
 	style: limite_style })
@@ -161,6 +170,13 @@ var tiendas =L.geoJson(null, {
 		layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.link)}
 	});
 	  
+//Variable para las incidente
+var incidente =L.geoJson(null, {
+	pointToLayer: inci_style,
+	onEachFeature: function( feature, layer ){
+		layer.bindPopup( "<strong>" + feature.properties.delito + "</strong><br/>" + feature.properties.link)}
+	});
+	  
 //Cargar el GeoJSON a las variables	    
 $.getJSON("GeoJson/CDMX_Hex.geojson", function (data) {
 	cdmx.addData(data)});
@@ -176,6 +192,8 @@ $.getJSON("GeoJson/tiendas.geojson", function (data) {
 	tiendas.addData(data)});	  
 $.getJSON("GeoJson/amigos.geojson", function (data) {
 	amigos.addData(data)});
+$.getJSON("GeoJson/incidente.geojson", function (data) {
+	incidente.addData(data)});
 	  
 //Ordenar las capas en orden
 est_metro.bringToFront();	  
