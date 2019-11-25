@@ -69,14 +69,6 @@ function estiloIcon(feature, latlng) {
 	})
 };	  
 
-//Estilo colonias	  
-var col_style = {
-	fillcolor:"FFFFFF",
-	color: "#000000",
-	weight: 1,
-	opacity: 0.6,
-	fillOpacity: 0.25
-};
 
 //Estilo incidentes
 var inci_style = {
@@ -143,13 +135,7 @@ var red_metro = L.geoJson(null, {
     }
 	});
 
-//Variable para las colonias
-var col = L.geoJson(null, {
-	style: col_style, 
-	onEachFeature: function( feature, layer ){
-	layer.bindPopup( "<strong>" + "COLONIA" + "</strong><br/>"+
-	feature.properties.SETT_NAME + ", POBLACIÓN: " + feature.properties.Sum_POB1 + " HABITANTES" )}
-	});
+
 
 //Variable para las tiendas
 var tiendas =L.geoJson(null, {
@@ -172,8 +158,6 @@ $.getJSON("GeoJson/Limite_CDMX.geojson", function (data) {
 	limite.addData(data)});
 $.getJSON("GeoJson/Red_STCMetro.geojson", function (data) {
 	red_metro.addData(data)});	
-$.getJSON("GeoJson/Colonias.geojson", function (data) {
-	col.addData(data)});
 $.getJSON("GeoJson/tiendas.geojson", function (data) {
 	tiendas.addData(data)});	  
 $.getJSON("GeoJson/amigos.geojson", function (data) {
@@ -204,7 +188,6 @@ var overlays = {
     "Tiendas": tiendas,	
     "Red SCT Metro": red_metro,
     "Densidad poblacional": cdmx,
-    "Colonias": col,
     "Incidentes":incidente
     };
 
