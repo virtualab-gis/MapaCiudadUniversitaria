@@ -173,9 +173,9 @@ var tiendas =L.geoJson(null, {
 	  
 //Variable para los incidente
 var incidente =L.geoJson(null, {
-	pointToLayer: inci_style,
+	pointToLayer: function( feature, latlng ){return L.circleMarker(latlng, inci_style)},
 	onEachFeature: function( feature, layer ){
-		layer.bindPopup( "<strong>" + feature.properties.delito + "</strong><br/>" + feature.properties.link)}
+	layer.bindPopup( "<strong>" + feature.properties.delito + "</strong><br/>" + feature.properties.link)}
 	});
 	  
 //Cargar el GeoJSON a las variables	    
@@ -221,7 +221,7 @@ var overlays = {
     "Red SCT Metro": red_metro,
     "Densidad poblacional": cdmx,
     "Colonias": col,
-    "Incidentes":incidente,
+    "Incidentes":incidente
     };
 
 //Agregar controlador al mapa
