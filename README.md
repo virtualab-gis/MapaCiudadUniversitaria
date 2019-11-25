@@ -1,2 +1,2 @@
 # MapaCiudadUniversitaria
-https://github.com/virtualab-gis/MapaCiudadUniversitaria.git
+https://virtualab-gis.github.io/MapaCiudadUniversitaria/
