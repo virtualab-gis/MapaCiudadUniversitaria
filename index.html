@@ -55,21 +55,6 @@ var limite_style = {
     "opacity": 1
 };
 
-
-	  
-// Estilo para capa de tiendas con icono en particular	  
-var tiendas_style = L.icon({
-	iconUrl: 'Icon/dice.png',
-	iconSize: [22.5, 22.5],
-});
-	  
-function estiloIcon(feature, latlng) {
-	return L.marker(latlng, {
-		icon: tiendas_style
-	})
-};	  
-
-
 //Estilo incidentes
 var inci_style = {
     radius: 3.5,
@@ -135,14 +120,6 @@ var red_metro = L.geoJson(null, {
     }
 	});
 
-
-
-//Variable para las tiendas
-var tiendas =L.geoJson(null, {
-	pointToLayer: estiloIcon,
-	onEachFeature: function( feature, layer ){
-		layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.link)}
-	});
 	  
 //Variable para los incidente
 var incidente =L.geoJson(null, {
@@ -157,9 +134,7 @@ $.getJSON("GeoJson/CDMX_Hex.geojson", function (data) {
 $.getJSON("GeoJson/Limite_CDMX.geojson", function (data) {
 	limite.addData(data)});
 $.getJSON("GeoJson/Red_STCMetro.geojson", function (data) {
-	red_metro.addData(data)});	
-$.getJSON("GeoJson/tiendas.geojson", function (data) {
-	tiendas.addData(data)});	  
+	red_metro.addData(data)});		  
 $.getJSON("GeoJson/amigos.geojson", function (data) {
 	amigos.addData(data)});
 $.getJSON("GeoJson/incidente.geojson", function (data) {
