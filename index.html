@@ -55,14 +55,7 @@ var limite_style = {
     "opacity": 1
 };
 
-var est_metro_style = {
-    radius: 3.5,
-    fillColor: "#FFFFFF",
-    color: "#000000",
-    weight: 1.5,
-    opacity: 1,
-    fillOpacity: 0.6
-};
+
 	  
 // Estilo para capa de tiendas con icono en particular	  
 var tiendas_style = L.icon({
@@ -150,12 +143,6 @@ var red_metro = L.geoJson(null, {
     }
 	});
 
-//Variable para las estaciones del metro
-var est_metro = L.geoJson(null, {
-	pointToLayer: function (feature, latlng) {return L.circleMarker(latlng, est_metro_style)},
-	onEachFeature: function( feature, layer ){
-      	layer.bindPopup( "<strong>" + "SCT Metro" + "</strong><br/>" + feature.properties.Name )}
-	});
 //Variable para las colonias
 var col = L.geoJson(null, {
 	style: col_style, 
@@ -185,8 +172,6 @@ $.getJSON("GeoJson/Limite_CDMX.geojson", function (data) {
 	limite.addData(data)});
 $.getJSON("GeoJson/Red_STCMetro.geojson", function (data) {
 	red_metro.addData(data)});	
-$.getJSON("GeoJson/Estaciones_STCMetro.geojson", function (data) {
-	est_metro.addData(data)});
 $.getJSON("GeoJson/Colonias.geojson", function (data) {
 	col.addData(data)});
 $.getJSON("GeoJson/tiendas.geojson", function (data) {
@@ -197,7 +182,7 @@ $.getJSON("GeoJson/incidente.geojson", function (data) {
 	incidente.addData(data)});
 	  
 //Ordenar las capas en orden
-est_metro.bringToFront();	  
+//est_metro.bringToFront();	  
 limite.bringToFront();
 	
 // Inicialización del mapa
@@ -217,7 +202,6 @@ var baseMaps = {
 var overlays = {
    /* "Amigos": amigos,*/
     "Tiendas": tiendas,	
-    "Estaciones SCT Metro": est_metro,
     "Red SCT Metro": red_metro,
     "Densidad poblacional": cdmx,
     "Colonias": col,
