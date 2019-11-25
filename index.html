@@ -85,6 +85,7 @@ var col_style = {
 	fillOpacity: 0.25
 };
 
+//Estilo incidentes
 var inci_style = {
     radius: 3.5,
     fillColor: "#FFFFFF",
@@ -170,7 +171,7 @@ var tiendas =L.geoJson(null, {
 		layer.bindPopup( "<strong>" + feature.properties.Name + "</strong><br/>" + feature.properties.link)}
 	});
 	  
-//Variable para las incidente
+//Variable para los incidente
 var incidente =L.geoJson(null, {
 	pointToLayer: inci_style,
 	onEachFeature: function( feature, layer ){
@@ -220,6 +221,7 @@ var overlays = {
     "Red SCT Metro": red_metro,
     "Densidad poblacional": cdmx,
     "Colonias": col,
+    "Incidentes":incidente,
     };
 
 //Agregar controlador al mapa
